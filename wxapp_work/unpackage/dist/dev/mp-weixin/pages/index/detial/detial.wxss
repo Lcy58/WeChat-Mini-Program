@@ -1,0 +1,32 @@
+
+.flex.data-v-6550a12e{
+	display: flex;
+}
+.flex-between.data-v-6550a12e{
+	justify-content: space-between;
+}
+.flex-row-center.data-v-6550a12e{
+	align-items: center;
+}
+.flex-row-end.data-v-6550a12e{
+	align-items: flex-end;
+}
+.tagList.data-v-6550a12e{
+	margin-top: 10px;
+}
+.tagList > view.data-v-6550a12e:not(:first-child){
+	margin-left: 8px;
+}
+.xinzi.data-v-6550a12e{
+	font-weight: bold;
+	font-size: 17px;
+	color: #1296db;
+	letter-spacing: 1px;
+	white-space: nowrap;
+}
+.yuan.data-v-6550a12e{
+	margin-top: 5px;
+	font-size: 14px;
+	color: #909090;
+}
+

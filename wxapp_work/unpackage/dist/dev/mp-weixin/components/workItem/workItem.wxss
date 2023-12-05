@@ -1,0 +1,42 @@
+
+.flex.data-v-6d54c684{
+	display: flex;
+}
+.flex-bet.data-v-6d54c684{
+	justify-content: space-between;
+}
+.flex-row-center.data-v-6d54c684{
+	align-items: center;
+}
+.flex-row-end.data-v-6d54c684{
+	align-items: flex-end;
+}
+.itemInfo.data-v-6d54c684{
+	border-radius: 5px;
+	box-shadow: 0 0 2px 3px #e3e3e3;
+}
+.work-name.data-v-6d54c684{
+	font-weight: bold;
+	font-size: 17px;
+	margin-right: 10px;
+}
+.tagList.data-v-6d54c684{
+	margin-top: 10px;
+}
+.tagList > view.data-v-6d54c684:not(:first-child){
+	margin-left: 8px;
+}
+.xinzi.data-v-6d54c684{
+	font-weight: bold;
+	font-size: 15px;
+	color: #1296db;
+	letter-spacing: 1px;
+	white-space: nowrap;
+}
+.yuan.data-v-6d54c684{
+	margin-top: 5px;
+	font-size: 14px;
+	color: #909090;
+	text-align: right;
+}
+

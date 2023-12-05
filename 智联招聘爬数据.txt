@@ -1,0 +1,92 @@
+// ==UserScript==
+// @name         招聘信息爬取示例（多页）（暴力猴）
+// @namespace    your-namespace
+// @version      0.1
+// @description  爬取招聘信息示例（多页）
+// @match        https://sou.zhaopin.com/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    const MAX_PAGES = 2; // 最多获取的页数
+    let currentPage = 1; // 当前页数
+
+    const jobData = []; // 存储招聘信息的数组
+
+    function scrapePage() {
+        const jobItems = document.querySelectorAll('.joblist-box__item');
+
+        for (const jobItem of jobItems) {
+            const jobTitle = jobItem.querySelector('.iteminfo__line1__jobname__name').textContent.trim();
+            const company = jobItem.querySelector('.iteminfo__line1__compname__name').textContent.trim();
+            const salary = jobItem.querySelector('.iteminfo__line2__jobdesc__salary').textContent.trim();
+            const location = jobItem.querySelector('.iteminfo__line2__jobdesc__demand__item:first-child').textContent.trim();
+               const hrImg = jobItem.querySelector('.c-chat-job__hr-img').getAttribute('src');
+            const jobEntity = {
+                jobTitle: jobTitle,
+                company: company,
+                salary: salary,
+                location: location,
+                hrImg: hrImg
+            };
+            jobData.push(jobEntity); // 将招聘信息对象存入数组
+        }
+      // console.log(jobData.length)
+      if(jobData.length == 90){
+        console.log("进入接口方法")
+             // 转换jobData为JSON字符串
+            var jsonData = JSON.stringify(jobData);
+            var apiUrl = "http://localhost:8998/insData/zlzp";
+            // 发送POST请求到后端接口
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json" // 指定请求的数据类型为JSON
+                },
+                body: jsonData // 发送JSON字符串作为请求体
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("请求成功！");
+                console.log(data);  // 打印后端返回的数据
+            })
+            .catch(error => {
+                console.log("请求失败:", error);
+            });
+      }
+    }
+
+    function goToNextPage() {
+
+        if (currentPage <= MAX_PAGES) {
+            const nextPageButton = document.querySelector('.soupager__btn:last-child');
+            if (nextPageButton) {
+                nextPageButton.click();
+            }
+        }
+    }
+
+    function waitForPageChange() {
+        const observer = new MutationObserver((mutations) => {
+            scrapePage();
+            if (currentPage <= MAX_PAGES) {
+               currentPage++;
+                goToNextPage();
+            } else {
+                // 在获取完所有页数据后，可以将jobData发送到服务器接口或其他操作
+                // console.log("已获取所有页的数据：", jobData);
+              // console.log("测试")
+
+
+            }
+          // console.log("已获取所有页的数据：", jobData);
+        });
+
+        const config = { childList: true, subtree: true };
+        observer.observe(document.body, config);
+    }
+
+    waitForPageChange(); // 开始监听页面变化
+})();

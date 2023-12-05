@@ -1,0 +1,30 @@
+
+.getMore.data-v-4cedc0c6{
+	display: flex; 
+	align-items: center; 
+	padding: 2px 20px;
+}
+.getMore>view.data-v-4cedc0c6:not(:first-child){
+	margin-left: 10px;
+}
+.moreTile.data-v-4cedc0c6{
+	font-weight: bold;
+	padding: 15px 0 10px 0;
+	font-size: 17px;
+	letter-spacing: 1px;
+	color: #6b6b6b;
+}
+.moreListData.data-v-4cedc0c6{
+	display: flex;
+	flex-wrap: wrap;
+}
+.moreListData view.data-v-4cedc0c6{
+	padding: 2px 7px;
+	border: 1px solid #1296DB;
+	border-radius: 4px;
+	font-size: 14px;
+	margin-left: 10px;
+	margin-top: 12px;
+	color: #1296DB;
+}
+

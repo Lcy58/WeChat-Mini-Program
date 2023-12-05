@@ -1,0 +1,71 @@
+{
+	"easycom": {
+			"^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
+		},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom" ,// 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 
+			}
+		}
+	    ,{
+            "path" : "pages/search/search",
+            "style" :                                                                                    
+            {
+                "navigationStyle": "custom" ,// 隐藏系统导航栏
+                "navigationBarTextStyle": "white" // 
+            }
+            
+        }
+        ,{
+            "path" : "pages/my/my",
+            "style" :                                                                                    
+            {
+                "navigationStyle": "custom" ,// 隐藏系统导航栏
+                "navigationBarTextStyle": "white" // 
+            }
+            
+        }
+        ,{
+            "path" : "pages/index/detial/detial",
+            "style" :                                                                                    
+            {
+                "navigationStyle": "custom" ,// 隐藏系统导航栏
+                "navigationBarTextStyle": "white" // 
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"custom": true,
+		"list": [{
+			"pagePath": "pages/index/index",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/search/search",
+			"text": "搜索"
+		}, {
+			"pagePath": "pages/my/my",
+			"text": "我的"
+		}]
+	},
+	"uniIdRouter": {},
+	"condition" : {//Mode configuration, effective only during development period.
+		"current": 0,//Current active mode (index entry of list)
+		"list": [
+			{
+				"name": "",//mode name
+				"path": "",//startup page, can not be empty
+				"query": ""//The startup parameters are obtained in the onLoad function of the page.
+			}
+		]
+	}
+}

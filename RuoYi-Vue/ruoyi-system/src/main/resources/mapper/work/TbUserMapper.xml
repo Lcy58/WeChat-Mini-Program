@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbUserMapper">
+    
+    <resultMap type="TbUser" id="TbUserResult">
+        <result property="id"    column="id"    />
+        <result property="openId"    column="openId"    />
+        <result property="education"    column="education"    />
+        <result property="wagesStart"    column="wages_start"    />
+        <result property="wagesEnd"    column="wages_end"    />
+        <result property="workPlace"    column="work_place"    />
+        <result property="workTime"    column="work_time"    />
+        <result property="gradSchool"    column="grad_school"    />
+        <result property="studyMajor"    column="study_major"    />
+        <result property="callPhone"    column="call_phone"    />
+        <result property="userName"    column="user_name"    />
+    </resultMap>
+
+    <sql id="selectTbUserVo">
+        select id, openId, user_name, education, wages_start, wages_end, work_place, work_time, grad_school, study_major, call_phone from tb_user
+    </sql>
+
+    <select id="selectTbUserList" parameterType="TbUser" resultMap="TbUserResult">
+        <include refid="selectTbUserVo"/>
+        <where>  
+            <if test="openId != null  and openId != ''"> and openId = #{openId}</if>
+            <if test="userName != null "> and user_name = #{userName}</if>
+            <if test="education != null "> and education = #{education}</if>
+            <if test="wagesStart != null "> and wages_start = #{wagesStart}</if>
+            <if test="wagesEnd != null "> and wages_end = #{wagesEnd}</if>
+            <if test="workPlace != null  and workPlace != ''"> and work_place = #{workPlace}</if>
+            <if test="workTime != null "> and work_time = #{workTime}</if>
+            <if test="gradSchool != null  and gradSchool != ''"> and grad_school = #{gradSchool}</if>
+            <if test="studyMajor != null "> and study_major = #{studyMajor}</if>
+            <if test="callPhone != null  and callPhone != ''"> and call_phone = #{callPhone}</if>
+        </where>
+    </select>
+    
+    <select id="selectTbUserById" parameterType="Long" resultMap="TbUserResult">
+        <include refid="selectTbUserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTbUser" parameterType="TbUser" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="openId != null">openId,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="education != null">education,</if>
+            <if test="wagesStart != null">wages_start,</if>
+            <if test="wagesEnd != null">wages_end,</if>
+            <if test="workPlace != null">work_place,</if>
+            <if test="workTime != null">work_time,</if>
+            <if test="gradSchool != null">grad_school,</if>
+            <if test="studyMajor != null">study_major,</if>
+            <if test="callPhone != null">call_phone,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="openId != null">#{openId},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="education != null">#{education},</if>
+            <if test="wagesStart != null">#{wagesStart},</if>
+            <if test="wagesEnd != null">#{wagesEnd},</if>
+            <if test="workPlace != null">#{workPlace},</if>
+            <if test="workTime != null">#{workTime},</if>
+            <if test="gradSchool != null">#{gradSchool},</if>
+            <if test="studyMajor != null">#{studyMajor},</if>
+            <if test="callPhone != null">#{callPhone},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTbUser" parameterType="TbUser">
+        update tb_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="openId != null">openId = #{openId},</if>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="education != null">education = #{education},</if>
+            <if test="wagesStart != null">wages_start = #{wagesStart},</if>
+            <if test="wagesEnd != null">wages_end = #{wagesEnd},</if>
+            <if test="workPlace != null">work_place = #{workPlace},</if>
+            <if test="workTime != null">work_time = #{workTime},</if>
+            <if test="gradSchool != null">grad_school = #{gradSchool},</if>
+            <if test="studyMajor != null">study_major = #{studyMajor},</if>
+            <if test="callPhone != null">call_phone = #{callPhone},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTbUserById" parameterType="Long">
+        delete from tb_user where id = #{id}
+    </delete>
+
+    <delete id="deleteTbUserByIds" parameterType="String">
+        delete from tb_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

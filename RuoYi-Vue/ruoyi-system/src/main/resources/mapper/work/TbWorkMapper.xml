@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbWorkMapper">
+    
+    <resultMap type="TbWork" id="TbWorkResult">
+        <result property="id"    column="id"    />
+        <result property="companyName"    column="company_name"    />
+        <result property="jobTitle"    column="job_title"    />
+        <result property="education"    column="education"    />
+        <result property="studyMajor"    column="study_major"    />
+        <result property="workTimeStart"    column="work_time_start"    />
+        <result property="workTimeEnd"    column="work_time_end"    />
+        <result property="workPlace"    column="work_place"    />
+        <result property="wagesStart"    column="wages_start"    />
+        <result property="wagesEnd"    column="wages_end"    />
+        <result property="hrImg"    column="hr_img"    />
+        <result property="sourceWebsite"    column="source_website"    />
+        <result property="useRequire"    column="use_require"    />
+    </resultMap>
+
+    <sql id="selectTbWorkVo">
+        select id, company_name, job_title, education, study_major, work_time_start, work_time_end, work_place, wages_start, wages_end, hr_img, source_website, use_require from tb_work
+    </sql>
+
+    <select id="selectTbWorkList" parameterType="TbWork" resultMap="TbWorkResult">
+        <include refid="selectTbWorkVo"/>
+        <where>  
+            <if test="companyName != null  and companyName != ''"> and company_name like concat('%', #{companyName}, '%')</if>
+            <if test="jobTitle != null  and jobTitle != ''"> and job_title like concat('%', #{jobTitle}, '%')</if>
+            <if test="education != null "> and education = #{education}</if>
+            <if test="studyMajor != null "> and study_major = #{studyMajor}</if>
+            <if test="workTimeStart != null "> and work_time_start = #{workTimeStart}</if>
+            <if test="workTimeEnd != null "> and work_time_end = #{workTimeEnd}</if>
+            <if test="workPlace != null  and workPlace != ''"> and work_place like concat('%', #{workPlace}, '%')</if>
+            <if test="wagesStart != null "> and wages_start = #{wagesStart}</if>
+            <if test="wagesEnd != null "> and wages_end = #{wagesEnd}</if>
+            <if test="hrImg != null  and hrImg != ''"> and hr_img = #{hrImg}</if>
+            <if test="sourceWebsite != null "> and source_website = #{sourceWebsite}</if>
+            <if test="useRequire != null  and useRequire != ''"> and use_require = #{useRequire}</if>
+        </where>
+        ORDER BY wages_end DESC
+    </select>
+
+    <select id="selectTbWorkListByApi" parameterType="TbWork" resultMap="TbWorkResult">
+        <include refid="selectTbWorkVo"/>
+        <where>
+            <if test="companyName != null  and companyName != ''"> and company_name like concat('%', #{companyName}, '%')</if>
+            <if test="jobTitle != null  and jobTitle != ''"> and job_title like concat('%', #{jobTitle}, '%')</if>
+            <if test="education != null "> and education = #{education}</if>
+            <if test="studyMajor != null "> and study_major = #{studyMajor}</if>
+            <if test="workTimeStart != null "> and work_time_start = #{workTimeStart}</if>
+            <if test="workTimeEnd != null "> and work_time_end = #{workTimeEnd}</if>
+            <if test="workPlace != null  and workPlace != ''"> and work_place like concat('%', #{workPlace}, '%')</if>
+            <if test="wagesStart != null "> and wages_start = #{wagesStart}</if>
+            <if test="wagesEnd != null "> and wages_end = #{wagesEnd}</if>
+            <if test="hrImg != null  and hrImg != ''"> and hr_img = #{hrImg}</if>
+            <if test="sourceWebsite != null "> and source_website = #{sourceWebsite}</if>
+            <if test="useRequire != null  and useRequire != ''"> and use_require = #{useRequire}</if>
+        </where>
+        ORDER BY wages_end DESC
+        LIMIT #{pageSizeApi},#{pageNumApi}
+    </select>
+    
+    <select id="selectTbWorkById" parameterType="Long" resultMap="TbWorkResult">
+        <include refid="selectTbWorkVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTbWork" parameterType="TbWork">
+        insert into tb_work
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="companyName != null">company_name,</if>
+            <if test="jobTitle != null">job_title,</if>
+            <if test="education != null">education,</if>
+            <if test="studyMajor != null">study_major,</if>
+            <if test="workTimeStart != null">work_time_start,</if>
+            <if test="workTimeEnd != null">work_time_end,</if>
+            <if test="workPlace != null">work_place,</if>
+            <if test="wagesStart != null">wages_start,</if>
+            <if test="wagesEnd != null">wages_end,</if>
+            <if test="hrImg != null">hr_img,</if>
+            <if test="sourceWebsite != null">source_website,</if>
+            <if test="useRequire != null">use_require,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="companyName != null">#{companyName},</if>
+            <if test="jobTitle != null">#{jobTitle},</if>
+            <if test="education != null">#{education},</if>
+            <if test="studyMajor != null">#{studyMajor},</if>
+            <if test="workTimeStart != null">#{workTimeStart},</if>
+            <if test="workTimeEnd != null">#{workTimeEnd},</if>
+            <if test="workPlace != null">#{workPlace},</if>
+            <if test="wagesStart != null">#{wagesStart},</if>
+            <if test="wagesEnd != null">#{wagesEnd},</if>
+            <if test="hrImg != null">#{hrImg},</if>
+            <if test="sourceWebsite != null">#{sourceWebsite},</if>
+            <if test="useRequire != null">#{useRequire},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTbWork" parameterType="TbWork">
+        update tb_work
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="companyName != null">company_name = #{companyName},</if>
+            <if test="jobTitle != null">job_title = #{jobTitle},</if>
+            <if test="education != null">education = #{education},</if>
+            <if test="studyMajor != null">study_major = #{studyMajor},</if>
+            <if test="workTimeStart != null">work_time_start = #{workTimeStart},</if>
+            <if test="workTimeEnd != null">work_time_end = #{workTimeEnd},</if>
+            <if test="workPlace != null">work_place = #{workPlace},</if>
+            <if test="wagesStart != null">wages_start = #{wagesStart},</if>
+            <if test="wagesEnd != null">wages_end = #{wagesEnd},</if>
+            <if test="hrImg != null">hr_img = #{hrImg},</if>
+            <if test="sourceWebsite != null">source_website = #{sourceWebsite},</if>
+            <if test="useRequire != null">use_require = #{useRequire},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTbWorkById" parameterType="Long">
+        delete from tb_work where id = #{id}
+    </delete>
+
+    <delete id="deleteTbWorkByIds" parameterType="String">
+        delete from tb_work where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

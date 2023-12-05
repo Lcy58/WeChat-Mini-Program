@@ -1,0 +1,30 @@
+
+.item-info>view.data-v-0be17cc6:nth-child(1){
+	font-weight: bold;
+}
+.item-info>view.data-v-0be17cc6:nth-child(2){
+	margin-left: 12px;
+	color: #0c0b0b;
+	letter-spacing: 1px;
+}
+.mg-top-10.data-v-0be17cc6{
+	margin-top: 10px;
+}
+.flex.data-v-0be17cc6{
+	display: flex;
+}
+.flex-center.data-v-0be17cc6{
+	justify-content: center;
+}
+.flex-bet.data-v-0be17cc6{
+	justify-content: space-between;
+}
+.flex-row-center.data-v-0be17cc6{
+	align-items: center;
+}
+.headImg.data-v-0be17cc6{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
